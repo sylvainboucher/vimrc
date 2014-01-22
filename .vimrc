@@ -1,4 +1,4 @@
-et encoding=utf-8
+set encoding=utf-8
 set nowrap
 set number
 syntax on
@@ -31,3 +31,7 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+execute pathogen#infect()
+au BufNewFile,BufRead *.less set filetype=less
+" Press F4 to toggle highlighting on/off, and show current value.
+:noremap <F4> :set hlsearch! hlsearch?<CR>
