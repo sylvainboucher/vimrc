@@ -33,5 +33,6 @@ autocmd BufWinLeave * call clearmatches()
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 execute pathogen#infect()
 au BufNewFile,BufRead *.less set filetype=less
+au BufNewFile,BufRead *.md set filetype=markdown
 " Press F4 to toggle highlighting on/off, and show current value.
 :noremap <F4> :set hlsearch! hlsearch?<CR>
