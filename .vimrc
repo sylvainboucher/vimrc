@@ -7,6 +7,7 @@
 "vim-repeat
 "vim-surround
 "vim-vinegar
+"vim-multiple-cursors
 
 set encoding=utf-8
 set nowrap
