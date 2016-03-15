@@ -54,12 +54,9 @@ let NERDTreeHijackNetrw = 0
 nmap <leader>b :NERDTreeToggle<cr>
 
 "commandT config
-let g:CommandTWildIgnore=&wildignore . ",node_modules/*,vendor/*"
+let g:CommandTWildIgnore=&wildignore . ",**/node_modules/*,**/vendor/*"
 
 "syntastic config
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
