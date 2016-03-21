@@ -4,10 +4,12 @@
 "nerdtree
 "nerdtree-ack
 "syntastic
+"ultisnips
+"vim-commentary
+"vim-multiple-cursors
 "vim-repeat
 "vim-surround
 "vim-vinegar
-"vim-multiple-cursors
 
 set encoding=utf-8
 set nowrap
