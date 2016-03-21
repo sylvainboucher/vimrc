@@ -3,6 +3,7 @@
 "command-t
 "nerdtree
 "nerdtree-ack
+"pdv
 "syntastic
 "ultisnips
 "vim-commentary
@@ -10,6 +11,7 @@
 "vim-repeat
 "vim-surround
 "vim-vinegar
+"vmustache
 
 set encoding=utf-8
 set nowrap
@@ -70,3 +72,17 @@ let g:syntastic_check_on_wq = 0
 "--php
 "--js
 "--css
+
+"/
+"/ pdv
+"/
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+
+nnoremap <leader>d :call pdv#DocumentWithSnip()<CR>
+
+"/
+"/ Ultisnips
+"/
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
