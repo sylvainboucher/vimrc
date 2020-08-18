@@ -2,22 +2,17 @@
 "ack.vim
 "command-t
 "nerdtree
-"nerdtree-ack
-"pdv
 "syntastic
 "ultisnips
 "vim-commentary
-"vim-multiple-cursors
-"vim-repeat
-"vim-surround
 "vim-vinegar
-"vmustache
+"vim-surround
+"vim-repeat
 
 set encoding=utf-8
 set nowrap
 set number
 syntax on
-colorscheme atom-dark-256 "xoria256
 set nocompatible
 set tabstop=4
 set shiftwidth=4
@@ -34,6 +29,9 @@ filetype plugin on
 set nobackup
 set nowb
 set noswapfile
+set ignorecase
+set smartcase
+set updatetime=100
 
 "highlight right column
 highlight ColorColumn ctermbg=232
@@ -48,6 +46,19 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
+"highlight tabs
+highlight SpecialKey ctermfg=1
+set list
+set listchars=tab:T>
+nmap <leader>l :set invlist<cr>
+
+" dark mode enabled?
+if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
+    colorscheme atom-dark-256 "xoria256
+else
+    colorscheme default
+endif
+
 execute pathogen#infect()
 
 " Press F4 to toggle highlighting on/off, and show current value.
@@ -58,27 +69,16 @@ let NERDTreeHijackNetrw = 0
 nmap <leader>b :NERDTreeToggle<cr>
 
 "commandT config
+let g:CommandTFileScanner="git"
 let g:CommandTWildIgnore=&wildignore . ",**/node_modules/*,**/vendor/*"
 
 "syntastic config
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-".ackrc
-"--ignore-dir=node_modules/,vendor/
-"--sql
-"--php
-"--js
-"--css
-
-"/
-"/ pdv
-"/
-let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
-
-nnoremap <leader>d :call pdv#DocumentWithSnip()<CR>
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 
 "/
 "/ Ultisnips
@@ -86,3 +86,19 @@ nnoremap <leader>d :call pdv#DocumentWithSnip()<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" Ack
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+
+" gitgutter
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+set tags=.git/tags
+
+" yank to clipboard
+noremap <Leader>y "*y
+
+" match xml and html tags
+runtime macros/matchit.vim
